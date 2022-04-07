@@ -4,7 +4,7 @@
       <div question>{{ record.question }}</div>
       <div answers class="answers">
         <ng-container *ngFor="let answer of record.answers">
-          <div>{{answer.check ? answer.value : ''}}</div>
+          <div [innerHtml]="(answer.check ? answer.value : '') | transformEnterRow | safeHtml">{{(answer.check ? answer.value : '') | transformEnterRow | safeHtml}}</div>
         </ng-container>
       </div>
     </app-question-presentation>

@@ -9,6 +9,8 @@ import { QuestionPresentationModule } from './shared/components/question-present
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionModalComponent } from './shared/components/question-modal/question-modal.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { TransformEnterRowPipeModule } from './shared/pipes/transform-enter-row/transform-enter-row.module';
+import { SafePipeModule } from './shared/pipes/safe/safe-pipe.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
     AppRoutingModule,
     QuestionPresentationModule,
     ReactiveFormsModule,
-    OverlayModule
+    OverlayModule,
+    TransformEnterRowPipeModule,
+    SafePipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

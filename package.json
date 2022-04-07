@@ -1,16 +1,12 @@
 {
   "name": "form-builder-assessment",
   "version": "0.0.0",
-  "homepage": "https://thinhvh.github.io/form_builder_assessment/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build:github": "ng build --aot --base-href 'https://thinhvh.github.io/form_builder_assessment/'",
-    "predeploy": "npm run build:github",
-    "deploy": "gh-pages -d dist"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
