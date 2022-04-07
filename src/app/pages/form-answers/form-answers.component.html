@@ -1,0 +1,13 @@
+<div class="form-box">
+  <ng-container *ngFor="let record of questions">
+    <app-question-presentation>
+      <div question>{{ record.question }}</div>
+      <div answers class="answers">
+        <ng-container *ngFor="let answer of record.answers">
+          <div>{{answer.check ? answer.value : ''}}</div>
+        </ng-container>
+      </div>
+    </app-question-presentation>
+  </ng-container>
+  <span class="underline back-to-form" (click)="backToFormBuilder()">Back to Forms Builder</span>
+</div>

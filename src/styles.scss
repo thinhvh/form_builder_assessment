@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+
+.underline {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+}
+
+.form-box {
+  width: 400px;
+  min-height: 200px;
+  border: 1px solid;
+  padding: 8px;
+}
+
+.overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 20px;
+}

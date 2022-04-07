@@ -1,0 +1,10 @@
+.add-new-question {
+  cursor: pointer;
+}
+.review-answer {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin: 16px;
+  }
+}

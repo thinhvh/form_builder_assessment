@@ -1,0 +1,29 @@
+.question-form {
+  min-width: 300px;
+  min-height: 120px;
+  .title {
+    .close-icon {
+      float: right;
+      cursor: pointer;
+      color: rgb(171, 171, 235);
+    }
+  }
+  .body {
+    padding-left: 8px;
+    .default-marginY {
+      margin: 8px 0;
+    }
+    .add-title {
+      margin: 8px 0;
+      color: blue;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+  }
+  .footer {
+    margin-top: 16px;
+    & > button {
+      float: right;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<form [formGroup]="questionForm" class="question-form">
+  <div class="title">
+    <strong>Add a new question</strong>
+    <div class="close-icon" (click)="close()">X</div>
+  </div>
+  <div class="body">
+    <div class="question-type default-marginY">
+      <select formControlName="type">
+        <ng-container *ngFor="let questionType of questionTypes">
+          <option [value]="questionType">
+            {{questionType | titlecase}}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="question-content default-marginY">
+      <input formControlName="question" placeholder="Type question here">
+      <div class="error" *ngIf="question.touched && question.errors">Question is required</div>
+    </div>
+    <div *ngIf="type === QuestionType.CHECKBOX" formArrayName="answers">
+      <div *ngFor="let control of answers.controls; let i = index" class="default-marginY">
+        <input [formControlName]="i" placeholder="Add Answer Option"/>
+      </div>
+      <div class="add-title" (click)="addOption()">+ Add another option</div>
+    </div>
+  </div>
+  <div class="footer">
+    <button (click)="submit()">Submit</button>
+  </div>
+</form>

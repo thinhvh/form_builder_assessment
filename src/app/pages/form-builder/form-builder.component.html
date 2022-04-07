@@ -1,0 +1,36 @@
+<form class="form-box">
+  <ng-container [formGroup]="form">
+    <ng-container *ngFor="let groupControl of formArr.controls; let idx = index" formArrayName="formArr">
+      <ng-container [formGroupName]="idx">
+        <app-question-presentation>
+          <div question>{{ groupControl.value.question }} *</div>
+          <div answers formArrayName="answers">
+            <div *ngFor="let answer of groupControl.value.answers; let i = index; trackBy:trackByIndex" [formGroupName]="i">
+              <ng-container *ngIf="groupControl.value.type === QuestionType.PARAGRAPH; else checkboxTemplate">
+                <textarea formControlName="value"></textarea>
+              </ng-container>
+              <ng-template #checkboxTemplate>
+                <div>
+                  <label>
+                    <input type="checkbox" formControlName="check" />
+                    <ng-container *ngIf="!answer.check || !answer.isOther; else otherTemplate">
+                      {{answer.value}}
+                    </ng-container>
+                    <ng-template #otherTemplate>
+                      <input formControlName="value" />
+                    </ng-template>
+                  </label>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </app-question-presentation>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+  <span class="underline add-new-question" (click)="addNewQuestion()">Add New Question</span>
+  <div class="review-answer" *ngIf="formArr.value.length">
+    <button (click)="gotoAnswerPage()">Review my answers</button>
+  </div>
+</form>
