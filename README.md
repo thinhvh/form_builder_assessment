@@ -1,5 +1,5 @@
 ## Link for testing
-- https://thinhvh.github.io/form_builder_assessment/
+- https://form-builder-assessment-pi.vercel.app/form/builder
 
 ## Environment
 
