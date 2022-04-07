@@ -1,5 +1,5 @@
 ## Link for testing
-- https://form-builder-assessment-pi.vercel.app/form/builder
+- https://form-builder-assessment-v1.vercel.app/
 
 ## Environment
 
