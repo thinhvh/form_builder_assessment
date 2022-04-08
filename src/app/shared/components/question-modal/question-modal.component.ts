@@ -18,7 +18,8 @@ export class QuestionModalComponent implements AfterViewInit {
   questionForm = this.fb.group({
     type: QuestionType.PARAGRAPH,
     question: ['', Validators.required],
-    answers: this.fb.array([''])
+    answers: this.fb.array(['']),
+    otherOption: false,
   })
 
   get type(): QuestionType {

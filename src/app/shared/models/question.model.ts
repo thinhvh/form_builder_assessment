@@ -4,4 +4,5 @@ export interface QuestionModel {
   type: QuestionType;
   question: string;
   answers: Array<{ check?: boolean, value: string }>;
+  otherOption?: boolean;
 }

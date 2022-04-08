@@ -17,12 +17,18 @@
       <input formControlName="question" placeholder="Type question here">
       <div class="error" *ngIf="question.touched && question.errors">Question is required</div>
     </div>
-    <div *ngIf="type === QuestionType.CHECKBOX" formArrayName="answers">
-      <div *ngFor="let control of answers.controls; let i = index" class="default-marginY">
-        <input [formControlName]="i" placeholder="Add Answer Option"/>
+    <ng-container *ngIf="type === QuestionType.CHECKBOX">
+      <div formArrayName="answers">
+        <div *ngFor="let control of answers.controls; let i = index" class="default-marginY">
+          <input [formControlName]="i" placeholder="Add Answer Option"/>
+        </div>
+      </div>
+      <div class="default-marginY">
+        <input type="checkbox" formControlName="otherOption"/>
+        <label>Allow other</label>
       </div>
       <div class="add-title" (click)="addOption()">+ Add another option</div>
-    </div>
+    </ng-container>
   </div>
   <div class="footer">
     <button (click)="submit()">Submit</button>

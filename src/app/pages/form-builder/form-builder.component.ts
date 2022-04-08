@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { QuestionModalComponent } from 'src/app/shared/components/question-modal/question-modal.component';
@@ -56,7 +56,7 @@ export class FormBuilderComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return;
 
-      this.addAQuestionGroup(result)
+      this.addAQuestionGroup(result, true)
     });
   }
 
@@ -68,15 +68,19 @@ export class FormBuilderComponent implements OnInit, AfterViewInit {
     this.router.navigate(['form/answers'])
   }
 
-  private addAQuestionGroup(questionModel: QuestionModel) {
+  private addAQuestionGroup(questionModel: QuestionModel, extendOther = false) {
     this.formArr.push(this.fb.group({
       ...questionModel,
-      answers: this.fb.array(questionModel.answers.map(answer => {
-        const result = typeof answer === 'string'
-          ? { value: answer, check: questionModel.type === QuestionType.CHECKBOX ? false : true, isOther: (answer as string).toLowerCase() === 'other' }
-          : {...answer, isOther: answer.value.toLowerCase() === 'other'}
-        return this.fb.group(result);
-      }))
-    }))
+      answers: this.fb.array(questionModel.answers.reduce((previousValue, currAnswer, index) => {
+        const result = typeof currAnswer === 'string'
+          ? { value: currAnswer, check: questionModel.type === QuestionType.CHECKBOX ? false : true }
+          : {...currAnswer}
+        previousValue.push(this.fb.group(result));
+        if (index === questionModel.answers.length - 1 && questionModel.otherOption && extendOther) {
+          previousValue.push(this.fb.group({check: false, value: 'Other', isOther: true}))
+        }
+        return previousValue;
+      }, [] as FormGroup[]))
+    }));
   }
 }
